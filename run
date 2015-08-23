@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if mountpoint -q /target; then
+	echo "Compiling into /target"
+  go get http://$GO_REPO \
+  && go build -o /target $GO_REPO \
+  && echo "Successfuly Compiled to /target"
+else
+	echo "/target is not a mountpoint."
+	echo "You can either:"
+	echo "- re-run this container with -v $PWD/target:/target"
+fi
